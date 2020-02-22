@@ -1,0 +1,60 @@
+---
+title: "individual1"
+author: "Mike Zaino - mzaino16"
+date: "2/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+dat <- readxl::read_xls('/Users/TheemikezanilyMac/Documents/School/DS 202/ds202_lab3/GSS.xls')
+predictors <- c("Year", "Jobsatif", "Happy", "Religion", "Education", "Addiction", "Cityproblems", "Space", "Party", "Race", "Sex", "Schoolyear", "Age", "Children", "Status", "ID", "Ballot")
+names(dat) <- predictors
+dat$Year <- as.factor(dat$Year)
+```
+
+1. How does the happiness of a respondent relate to the marriage status?
+```{r}
+ggplot(dat, aes(x=fct_infreq(Status), fill=Happy))+geom_bar()+theme_bw()
+```
+
+Yes, the percentage of people who are very happy and pretty happy who are married is highest compared to all other answers. So, yes, marriage does affect happiness.
+
+2. Does the sex of the respondent affect the relationship you found in Q1?
+
+```{r}
+ggplot(dat, aes(x=fct_infreq(Status), fill=Happy))+geom_bar()+theme_bw() +facet_wrap(~Sex)
+```
+
+No, it does not. Clearly from the above graph, males and females have about the same percentage of pretty happy and very happy people.
+
+3. How does the happiness of a respondent relate to the political party affiliation?
+
+```{r}
+ggplot(dat, aes(x=fct_infreq(Party), fill=Happy))+geom_bar(position="fill")+theme_bw()
+```
+
+Looking at the above graphs, it is tough to tell if there is a difference between parties. THere is small variations in the data but nothing to say one way or the other. So, political party has no affect on happiness.
+
+Does your religion and political party association have any correlation?
+Does your education level and party dictate views on the national education system?
+Does your religious preference determine your marital status and amount of children?
+Is there a time when there was a political party affiliation shift?
+
+```{r}
+ggplot(dat, )
+```
+
+
+
+

@@ -44,6 +44,7 @@ ggplot(dat, aes(x=fct_infreq(Party), fill=Happy))+geom_bar(position="fill")+them
 
 Looking at the above graphs, it is tough to tell if there is a difference between parties. THere is small variations in the data but nothing to say one way or the other. So, political party has no affect on happiness.
 
+<<<<<<< HEAD
 
 # Meredith Tucker Problems 1 thru 3
 
@@ -73,6 +74,8 @@ ggplot(dat, aes(x=Happy, fill=Party)) + geom_bar()
 I don't believe that the party plays a large role on the happiness level. Most people say that they are happy.
 
 
+=======
+>>>>>>> 693b5d82aba95aa348d60a7780513a3fcd12a09a
 # Team Work
 1. Does your religion and political party association have any correlation?
 ```{r}
