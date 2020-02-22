@@ -1,6 +1,6 @@
 ---
-title: "team"
-author: "Mike Zaino"
+title: "Lab 3 Team Work"
+author: "Mike Zaino, mzaino16, & Meredith Tucker, mltucker2001"
 date: "2/22/2020"
 output: html_document
 ---
@@ -8,15 +8,72 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(tidyverse)
 ```
 
 ```{r}
-dat <- readxl::read_xls('/Users/TheemikezanilyMac/Documents/School/DS 202/ds202_lab3/GSS.xls')
+dat <- readxl::read_xls('C:/Users/mltuc/Documents/DS 202/ds202_lab3/GSS.xls')
 predictors <- c("Year", "Jobsatif", "Happy", "Religion", "Education", "Addiction", "Cityproblems", "Space", "Party", "Race", "Sex", "Schoolyear", "Age", "Children", "Status", "ID", "Ballot")
 names(dat) <- predictors
 dat$Year <- as.factor(dat$Year)
 ```
 
+
+# Mike Zaino Individual Work 
+
+1. How does the happiness of a respondent relate to the marriage status?
+```{r}
+ggplot(dat, aes(x=fct_infreq(Status), fill=Happy))+geom_bar()+theme_bw()
+```
+
+Yes, the percentage of people who are very happy and pretty happy who are married is highest compared to all other answers. So, yes, marriage does affect happiness.
+
+2. Does the sex of the respondent affect the relationship you found in Q1?
+
+```{r}
+ggplot(dat, aes(x=fct_infreq(Status), fill=Happy))+geom_bar()+theme_bw() +facet_wrap(~Sex)
+```
+
+No, it does not. Clearly from the above graph, males and females have about the same percentage of pretty happy and very happy people.
+
+3. How does the happiness of a respondent relate to the political party affiliation?
+
+```{r}
+ggplot(dat, aes(x=fct_infreq(Party), fill=Happy))+geom_bar(position="fill")+theme_bw()
+```
+
+Looking at the above graphs, it is tough to tell if there is a difference between parties. THere is small variations in the data but nothing to say one way or the other. So, political party has no affect on happiness.
+
+
+# Meredith Tucker Problems 1 thru 3
+
+1. How does the happiness of a respondent relate to the marriage status?
+
+```{r}
+
+ggplot(dat, aes(x=Happy, fill=Status)) + geom_bar()
+
+```
+
+As the happiness level increases as appears on the chart, the higher the number of marriages.
+
+2. Does the sex of the respondent affect the relationship you found in Q1?
+```{r}
+ggplot(dat, aes(x=Happy, fill=Status)) +geom_bar() +facet_wrap(~Sex)
+```
+
+The level of women appear to be happier then the number of men. However there is a happier number of widowed women over the the number of widowed men.
+
+3. How does the happiness of a respondent relate to the political party affiliation?
+
+```{r}
+ggplot(dat, aes(x=Happy, fill=Party)) + geom_bar()
+
+```
+I don't believe that the party plays a large role on the happiness level. Most people say that they are happy.
+
+
+# Team Work
 1. Does your religion and political party association have any correlation?
 ```{r}
 ggplot(dat, aes(x=Party, fill=Religion))+geom_bar()+coord_flip()+theme_bw()+facet_wrap(~Religion, scales="free_x")
@@ -27,14 +84,31 @@ Looking at the graph, we can see that Protestant, Jewish, and Islam all favor de
 2. Does your education level and party dictate views on the national education system?
 
 ```{r}
-table(dat$Schoolyear)
 dat$Schoolyear <- factor(dat$Schoolyear, levels = c('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20', 'Dont know', 'No answer'))
 ggplot(dat, aes(x=Schoolyear, fill=Party))+geom_bar()+theme_bw()+coord_flip()+facet_wrap(~Education, scales="free_x")
 ```
 
 From the graph, we can see that most people only graduated high school at grade 12. Form those people, we can see that if you are republican, you favor that education is too much and would like it to change. On the other hand, if you finished grade 12 and are democrat, you favor the education  system is about right and there does not need to be a change.
 
+3. Does your religious preference determine your marital status and amount of children?
 
+```{r}
+ggplot(dat, aes(x=Children, fill=Status)) + geom_bar() + facet_wrap(~Religion, scales='free_x') + coord_flip() + labs( title='Amount of Children')
+
+
+```
+
+According to the graphs, the mostly likely people to have no children have never married. People of the Native American religion have a higher number of never married people with more children. Otherwise it appears that the most common number of children in all religions appear to be one to two kids.
+
+4. Is there a time when there was a political party affiliation shift?
+
+```{r}
+
+ggplot(dat, aes(x=Year, fill=Party)) + geom_bar(position = 'fill') + coord_flip() + labs(title='Political Party Affiliation by Year')
+
+```
+
+The number of people in each political party has stayed fairly consistent throughout the years. However the number of independents have increased throughout the years. The most fluctuation between partys occurs between independent near democratic and independent near republican.
 
 
 

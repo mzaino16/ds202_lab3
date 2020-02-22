@@ -1,0 +1,47 @@
+---
+title: "Individual2 Lab 3"
+author: "Meredith Tucker mltucker2001"
+date: "2/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+```{r}
+dat <- readxl::read_xls('C:/Users/mltuc/Documents/DS 202/ds202_lab3/GSS.xls')
+predictors <- c('Year', 'Javsatif', 'Happy', 'Religion', 'Education', 'Addiction', 'Cityproblems', 'Space', 'Party', 'Race', 'Sex', 'Schoolyear', 'Age', 'Children', 'Status', 'ID', 'Ballot')
+names(dat) <- predictors
+dat$Year <- as.factor(dat$Year)
+```
+
+
+1. How does the happiness of a respondent relate to the marriage status?
+
+```{r}
+
+ggplot(dat, aes(x=Happy, fill=Status)) + geom_bar()
+
+```
+
+As the happyness level increases as appears on the chart, the higher the number of marriages.
+
+2. Does the sex of the respondent affect the relationship you found in Q1?
+```{r}
+ggplot(dat, aes(x=Happy, fill=Status)) +geom_bar() +facet_wrap(~Sex)
+```
+
+The level of women appear to be happier then the number of men. However there is a happier number of widowed women over the the number of widowed men.
+
+3. How does the happiness of a respondent relate to the political party affiliation?
+
+```{r}
+ggplot(dat, aes(x=Happy, fill=Party)) + geom_bar()
+
+```
+I don't believe that the party plays a large role on the happiness level. Most people say that they are happy.
+
+
+
