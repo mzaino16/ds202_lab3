@@ -1,15 +1,20 @@
 ---
-title: "team"
-author: "Mike Zaino"
-date: "2/22/2020"
+title: "individual1"
+author: "Mike Zaino - mzaino16"
+date: "2/19/2020"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
-library(tidyverse)
 ```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
 dat <- readxl::read_xls('/Users/TheemikezanilyMac/Documents/School/DS 202/ds202_lab3/GSS.xls')
@@ -17,9 +22,6 @@ predictors <- c("Year", "Jobsatif", "Happy", "Religion", "Education", "Addiction
 names(dat) <- predictors
 dat$Year <- as.factor(dat$Year)
 ```
-
-
-# Mike Zaino Individual Work 
 
 1. How does the happiness of a respondent relate to the marriage status?
 ```{r}
@@ -44,24 +46,14 @@ ggplot(dat, aes(x=fct_infreq(Party), fill=Happy))+geom_bar(position="fill")+them
 
 Looking at the above graphs, it is tough to tell if there is a difference between parties. THere is small variations in the data but nothing to say one way or the other. So, political party has no affect on happiness.
 
-# Team Work
-1. Does your religion and political party association have any correlation?
-```{r}
-ggplot(dat, aes(x=Party, fill=Religion))+geom_bar()+coord_flip()+theme_bw()+facet_wrap(~Religion, scales="free_x")
-```
-
-Looking at the graph, we can see that Protestant, Jewish, and Islam all favor democratic. This makes sense as their religion favors more democratic ideals. Catholic has more of an even spread across all the ideals. Lastly, the dont know category has a lot of independent people. This is because they do not favor any ideals and are in the middle of both republican and democrat.
-
-2. Does your education level and party dictate views on the national education system?
+Does your religion and political party association have any correlation?
+Does your education level and party dictate views on the national education system?
+Does your religious preference determine your marital status and amount of children?
+Is there a time when there was a political party affiliation shift?
 
 ```{r}
-table(dat$Schoolyear)
-dat$Schoolyear <- factor(dat$Schoolyear, levels = c('0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20', 'Dont know', 'No answer'))
-ggplot(dat, aes(x=Schoolyear, fill=Party))+geom_bar()+theme_bw()+coord_flip()+facet_wrap(~Education, scales="free_x")
+ggplot(dat, )
 ```
-
-From the graph, we can see that most people only graduated high school at grade 12. Form those people, we can see that if you are republican, you favor that education is too much and would like it to change. On the other hand, if you finished grade 12 and are democrat, you favor the education  system is about right and there does not need to be a change.
-
 
 
 
